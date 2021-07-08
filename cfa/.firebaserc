@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "catfeed-b11e0": {
+      "hosting": {
+        "cfa": [
+          "catfeed-b11e0"
+        ]
+      }
+    }
+  }
+}

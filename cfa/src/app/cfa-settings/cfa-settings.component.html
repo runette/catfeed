@@ -1,0 +1,34 @@
+<mat-toolbar>
+    <a mat-icon-button routerLink="/main" >
+        <mat-icon>arrow_back_ios</mat-icon>
+    </a>
+    <span>Cat Settings</span>
+</mat-toolbar>
+<mat-card>
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Cat Name</mat-label>
+      <input matInput 
+      [formControl]="name">
+      <mat-hint>The Cat's Name</mat-hint>
+    </mat-form-field>
+
+</p>
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Minimum Time</mat-label>
+      <input matInput type="number"
+      [formControl]="min_time">
+      <mat-hint>The minimum time between feeds</mat-hint>
+    </mat-form-field>
+</p>
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Expected Time</mat-label>
+      <input matInput type="number"
+      [formControl]="expected_time">
+      <mat-hint>The target time between feeds</mat-hint>
+    </mat-form-field>
+</p>
+</mat-card>
+
