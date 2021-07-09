@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection,  AngularFirestoreDocument  } from '@angular/fire/firestore';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 
 export interface Timestamp {
   seconds: number;
@@ -27,6 +27,7 @@ export class CfaDatabaseService {
   catCollection: AngularFirestoreCollection<Cat>;
   cats: Observable<Cat[]>;
   currentCat: BehaviorSubject<Cat> = new BehaviorSubject<Cat>( new Cat() );
+  currentSub: Subscription = new Subscription();
 
   constructor(firestore: AngularFirestore) {
     this.catCollection = firestore.collection<Cat>('cats');
@@ -41,5 +42,12 @@ export class CfaDatabaseService {
      let record : AngularFirestoreDocument<Cat> = this.catCollection.doc(cat.id);
      record.update(cat);
      this.currentCat.next(cat);
+   }
+
+   new_current(cat: Cat)
+   {
+    this.currentSub.unsubscribe();
+    let record : AngularFirestoreDocument<Cat> = this.catCollection.doc(cat.id);
+    this.currentSub = record.valueChanges().subscribe( cat => { if (cat) this.currentCat.next(cat) } )
    }
 }

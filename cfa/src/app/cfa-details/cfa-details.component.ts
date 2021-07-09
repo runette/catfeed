@@ -38,7 +38,7 @@ export class CfaDetailsComponent implements OnInit {
   change_cat(id: String)
   {
     this.cats.forEach( (cat: Cat) => { if (cat.id === id) this.currentCat = cat; } );
-    this.database.currentCat.next(this.currentCat);
+    this.database.new_current(this.currentCat);
   }
 
 }

@@ -1,19 +1,17 @@
-<mat-form-field appearance="fill">
-    <mat-label>Cat</mat-label>
-    <mat-select 
-        [value]="currentCat.id"
-        (selectionChange)="change_cat($event.value)"
-    >
-      <mat-option *ngFor="let cat of cats" [value]="cat.id">
-        {{cat.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <a mat-icon-button routerLink="/settings" aria-label="Example icon button with a vertical three dot icon"
-    >
-    <mat-icon>settings</mat-icon>
-</a>
-  
-  <mat-card>
-    Last Feed :  {{feed | date : 'HH:mm'}}
-  </mat-card>
+<mat-toolbar>
+    <mat-form-field appearance="fill">
+        <mat-label>Cat</mat-label>
+        <mat-select 
+            [value]="currentCat.id"
+            (selectionChange)="change_cat($event.value)"
+        >
+            <mat-option *ngFor="let cat of cats" [value]="cat.id">
+                {{cat.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <span class="spacer text-center">{{feed | date : 'HH:mm'}}</span>
+    <a mat-icon-button routerLink="/settings" >
+        <mat-icon>settings</mat-icon>
+    </a>
+</mat-toolbar>

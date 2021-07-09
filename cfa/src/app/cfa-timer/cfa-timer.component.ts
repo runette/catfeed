@@ -36,7 +36,7 @@ export class CfaTimerComponent implements OnInit, OnDestroy {
   update_spinner()
   {
     this.value = (Date.now() / 1000 - this.currentCat.feed.seconds) / (this.currentCat.expected_time * 60) * 100;
-    if (this.value < this.currentCat.min_time/this.currentCat.min_time * 100) {
+    if (this.value < this.currentCat.min_time/this.currentCat.expected_time * 100) {
       this.color = 'warn';
     } else {
       this.color = 'primary';
