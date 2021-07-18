@@ -32,9 +32,15 @@ export class CfaDatabaseService {
   constructor(firestore: AngularFirestore) {
     this.catCollection = firestore.collection<Cat>('cats');
     this.cats = this.catCollection.valueChanges({idField: 'id'});
-    this.currentCat.next(
-      new Cat()
-    );
+    let catstr = localStorage.getItem('cat');
+    let cat: Cat;
+    try 
+    {
+      this.new_current( JSON.parse(catstr || "" ) as Cat);
+    } catch
+    {
+      this.currentCat.next(  new Cat() );
+    }
    }
 
    update(cat : Cat)
@@ -48,6 +54,7 @@ export class CfaDatabaseService {
    {
     this.currentSub.unsubscribe();
     let record : AngularFirestoreDocument<Cat> = this.catCollection.doc(cat.id);
-    this.currentSub = record.valueChanges().subscribe( cat => { if (cat) this.currentCat.next(cat) } )
+    this.currentSub = record.valueChanges().subscribe( cat => { if (cat) this.currentCat.next(cat) } );
+    localStorage.setItem("cat",JSON.stringify(cat));   
    }
 }
