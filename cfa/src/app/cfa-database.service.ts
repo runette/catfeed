@@ -32,11 +32,11 @@ export class CfaDatabaseService {
   constructor(firestore: AngularFirestore) {
     this.catCollection = firestore.collection<Cat>('cats');
     this.cats = this.catCollection.valueChanges({idField: 'id'});
-    let catstr = localStorage.getItem('cat');
+    let catstr = localStorage.getItem('cat') || "";
     let cat: Cat;
     try 
     {
-      this.new_current( JSON.parse(catstr || "" ) as Cat);
+      this.new_current( JSON.parse(catstr) as Cat);
     } catch
     {
       this.currentCat.next(  new Cat() );
